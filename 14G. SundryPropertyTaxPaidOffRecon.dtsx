@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 3:57:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{9BE88878-AF97-45BA-8E72-CE85D2738A82}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="14G  SundryPropertyTaxPaidOffRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{3CAF8DC4-CEA5-492B-96CE-6DD0031E648E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\14G SundryPropertyTaxPaidOffRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{81606593-ACE1-4B44-9E55-A8CC384B1047}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14G SundryPropertyTaxPaidOffRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="--  20250929 PropertyTaxAsSundryPaidOffContracts&#xA;&#xA;DROP TABLE IF EXISTS ##SourcePPTXPaidOff&#xA;DROP TABLE IF EXISTS ##TargetPPTXPaidOff&#xA;DROP TABLE IF EXISTS ##PropertyTaxAsSundryPaidOffContracts&#xA;DROP TABLE IF EXISTS PropertyTaxAsSundryPaidOffContracts&#xA;SELECT distinct&#xA;  Receivable_Sundry.ReceivableID,&#xA;  PropertyTax_Assessment.InventoryID AS AssetID,&#xA;  CASE&#xA;    WHEN (&#xA;      A.Id IS NOT NULL&#xA;      AND A.Status not IN ('Leased', 'InvestorLeased')&#xA;    ) THEN 1&#xA;    ELSE 0&#xA;  &#xA;END&#xA; AS IsAssetBased,&#xA;  Receivable_Sundry.DueDate,&#xA;  Currency_Index.ISO AS Currency,&#xA;  'MIG Property Tax Rebill-Sundry' AS ReceivableCodeName,&#xA;  Receivable_Sundry.Amount AS TotalAmount_Amount,&#xA;  Receivable_Sundry.Balance AS TotalBalance_Amount,&#xA;  Customer_Profile.AccountNumber AS CustomerNumber&#xA;Into&#xA;  ##SourcePPTXPaidOff&#xA;FROM&#xA;  Insight_Source..Receivable_Sundry&#xA;  INNER JOIN Insight_Source..PropertyTax_Assessment on Insight_Source..PropertyTax_Assessment.InventoryID = Insight_Source..Receivable_Sundry.InventoryID&#xA;  AND Insight_Source..PropertyTax_Assessment.PropertyTaxId = Insight_Source..Receivable_Sundry.SourceId&#xA;  INNER JOIN Insight_Source..Lease_Profile on Insight_Source..Lease_Profile.LeaseID = Insight_Source..PropertyTax_Assessment.LeaseID&#xA;  INNER JOIN Insight_Source..Lease_InventoryInLease LIL on LIL.LeaseID = Lease_Profile.LeaseID&#xA;  AND Lil.InventoryID = PropertyTax_Assessment.InventoryID&#xA;  AND IsInLease = 0&#xA;  INNER JOIN Insight_Source..Customer_Profile on Insight_Source..Customer_Profile.CustomerID = Insight_Source..Lease_Profile.CustomerID&#xA;  INNER JOIN Insight_Source..LLC_Profile on Insight_Source..LLC_Profile.LLCID = Insight_Source..Lease_Profile.LLCID&#xA;  INNER JOIN Insight_Source..Currency_Index ON LLC_Profile.CurrencyIndexID = Currency_Index.CurrencyIndexID&#xA;  LEFT JOIN Insight_UAT..Assets A on A.Id = LIL.InventoryID&#xA;  AND a.Status not IN ('Leased', 'InvestorLeased')&#xA;WHERE&#xA;  Receivable_Sundry.ReceivableTypeID IN (7)&#xA;  AND Receivable_Sundry.EntityTypeId = 5&#xA;  AND Receivable_Sundry.IsActive = 1&#xA;  AND Lease_Profile.StatusId IN (2, 3)&#xA;  AND Insight_Source..PropertyTax_Assessment.LeaseID = Insight_Source..Receivable_Sundry.EntityId&#xA;  AND Insight_Source..PropertyTax_Assessment.ReversalPostDate IS NULL&#xA;  AND Insight_Source..PropertyTax_Assessment.ReversalJournalID IS NULL&#xA;  AND PropertyTax_Assessment.Amount = Receivable_Sundry.Amount&#xA;  AND YEAR(PropertyTax_Assessment.LienDate) = YEAR(Receivable_Sundry.DueDate)&#xA;  AND (&#xA;    Receivable_Sundry.PostDate &gt;= '2025-01-01 00:00:00.000'&#xA;  )&#xA;  AND PropertyTax_Assessment.AssessedValue &gt; 0&#xA;  AND Receivable_Sundry.Amount &gt; 0&#xA;  --Target&#xA;SELECT&#xA;  cast(&#xA;    right(&#xA;      R.UniqueIdentifier,&#xA;      charindex('-', reverse(R.UniqueIdentifier)) - 1&#xA;    ) AS bigint&#xA;  ) AS ReceivableId,&#xA;  SD.AssetId,&#xA;  S.IsAssetBased,&#xA;  R.DueDate,&#xA;  ReceivableCodes.Name ReceivableCodeName,&#xA;  R.TotalAmount_Currency AS Currency,&#xA;  R.TotalAmount_Amount,&#xA;  R.TotalBalance_Amount,&#xA;  P.PartyNumber AS CustomerNumber&#xA;INTO&#xA;  ##TargetPPTXPaidOff&#xA;FROM&#xA;  Insight_UAT..Receivables R&#xA;  INNER JOIN Insight_UAT..Sundries S on S.Id = R.SourceId&#xA;  AND SourceTable = 'Sundry'&#xA;  AND R.UniqueIdentifier LIKE 'PropertyTax-PaidOff-%'&#xA;  INNER JOIN Insight_UAT..Parties P on P.Id = S.CustomerId&#xA;  LEFT JOIN SundryDetails SD on Sd.SundryId = S.Id&#xA;  LEFT JOIN Insight_UAT..ReceivableCodes on ReceivableCodes.Id = R.ReceivableCodeId&#xA;SELECT&#xA;  ##SourcePPTXPaidOff.ReceivableID,&#xA;  ##SourcePPTXPaidOff.IsAssetBased 'S_IsAssetBased',&#xA;  ##TargetPPTXPaidOff.IsAssetBased AS 'T_IsAssetBased',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.IsAssetBased, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.IsAssetBased, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; IsAssetBased_Matched,&#xA;  ##SourcePPTXPaidOff.AssetId AS 'S_AssetId',&#xA;  ##TargetPPTXPaidOff.AssetId AS 'T_AssetId',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.AssetId, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.AssetId, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; AssetId_Matched,&#xA;  ##SourcePPTXPaidOff.CustomerNumber AS 'S_CustomerNumber',&#xA;  ##TargetPPTXPaidOff.CustomerNumber AS 'T_CustomerNumber',&#xA;  ##SourcePPTXPaidOff.DueDate AS 'S_DueDate',&#xA;  ##TargetPPTXPaidOff.DueDate AS 'T_DueDate',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.DueDate, '1900-01-01') &lt;&gt; ISNULL(##TargetPPTXPaidOff.DueDate, '1900-01-01') THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; DueDate_Matched,&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.CustomerNumber, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.CustomerNumber, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; CustomerNumber_Matched,&#xA;  ##SourcePPTXPaidOff.Currency AS 'S_Currency',&#xA;  ##TargetPPTXPaidOff.Currency AS 'T_Currency',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.Currency, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.Currency, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; Currency_Matched,&#xA;  ##SourcePPTXPaidOff.TotalAmount_Amount AS 'S_TotalAmount_Amount',&#xA;  ##TargetPPTXPaidOff.TotalAmount_Amount AS 'T_TotalAmount_Amount',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.TotalAmount_Amount, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.TotalAmount_Amount, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; TotalAmount_Amount_Matched,&#xA;  ##SourcePPTXPaidOff.TotalBalance_Amount AS 'S_TotalBalance_Amount',&#xA;  ##TargetPPTXPaidOff.TotalBalance_Amount AS 'T_TotalBalance_Amount',&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.TotalBalance_Amount, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.TotalBalance_Amount, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; TotalBalance_Amount_Matched,&#xA;  ##SourcePPTXPaidOff.ReceivableCodeName S_ReceivableCodeName,&#xA;  ##TargetPPTXPaidOff.ReceivableCodeName T_ReceivableCodeName,&#xA;  CASE&#xA;    WHEN ISNULL(##SourcePPTXPaidOff.ReceivableCodeName, 0) &lt;&gt; ISNULL(##TargetPPTXPaidOff.ReceivableCodeName, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; ReceivableCodeName_Matched&#xA; INTO  ##PropertyTaxAsSundryPaidOffContracts&#xA;FROM&#xA;  ##SourcePPTXPaidOff&#xA;  LEFT JOIN ##TargetPPTXPaidOff on ##SourcePPTXPaidOff.ReceivableID = ##TargetPPTXPaidOff.ReceivableId&#xA;&#xA;DECLARE @CreateTableScript NVARCHAR(max);&#xA;&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE   PropertyTaxAsSundryPaidOffContracts  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##PropertyTaxAsSundryPaidOffContracts'&#xA;  );&#xA;&#xA;EXEC sp_Executesql @CreateTableScript&#xA;&#xA;-- 14G. SundryPropertyTaxPaidOffRecon.sql&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.PropertyTaxAsSundryPaidOffContracts&#xA;&#xA;--INSERT INTO&#xA;--  PropertyTaxAsSundryPaidOffContracts&#xA;&#xA;SELECT 'PropertyTaxAsSundryPaidOffContracts' Recon,  *&#xA;INTO V5_Recon.dbo.PropertyTaxAsSundryPaidOffContracts &#xA;FROM ##PropertyTaxAsSundryPaidOffContracts&#xA;&#xA;DROP TABLE IF EXISTS ##SourcePPTXPaidOff&#xA;DROP TABLE IF EXISTS ##TargetPPTXPaidOff&#xA;DROP TABLE IF EXISTS ##PropertyTaxAsSundryPaidOffContracts&#xA;--SELECT * FROM PropertyTaxAsSundryPaidOffContracts&#xA;&#xA;SELECT *&#xA;FROM  V5_Recon.dbo.PropertyTaxAsSundryPaidOffContracts" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="254,42"
+          Id="Package\14G SundryPropertyTaxPaidOffRecon"
+          TopLeft="116,53" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

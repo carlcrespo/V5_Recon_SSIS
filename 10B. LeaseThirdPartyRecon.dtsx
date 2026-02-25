@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 1:46:26 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{38C88174-456D-4831-90E0-F53738531F15}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="10B  LeaseThirdPartyRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{BEED9460-FD2C-43C7-9FE6-AB20B74ACB61}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\10B LeaseThirdPartyRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{66A9036F-3FCD-4D40-AB29-131D97D49A37}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="10B LeaseThirdPartyRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250929 LeaseThirdPartyRecon&#xA;&#xA;DROP TABLE IF EXISTS  #Source&#xA;DROP TABLE IF EXISTS  #Target&#xA;DROP TABLE IF EXISTS  #LeaseThirdPartyRecon&#xA;-- Source&#xA;SELECT DISTINCT&#xA;  CAST(Insight_Source.dbo.ThirdParty_DealRelationshipDetail.EntityID AS BigInt) AS LeaseId,&#xA;  Lease_Profile.Sequencenumber,  &#xA;  CASE&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 1 THEN 'CoLessee'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 2 THEN 'GeneralPartner'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 3 THEN 'CorporateGuarantor'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 4 THEN 'SubLessee'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 5 THEN 'CorporateGuarantor'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 6 THEN 'CoBorrower'&#xA;    WHEN ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipTypeID = 7 THEN 'PersonalGuarantor'&#xA;  END AS RelationshipType,&#xA;  CAST(LeaseThirdPartyNumberViewLeaseThirdPartyRelationship.AccountNumber AS nvarchar(20)) AS ThirdPartyNumber&#xA;INTO #Source&#xA;FROM&#xA;  Insight_Source.dbo.ThirdParty_DealRelationshipDetail&#xA;  INNER JOIN Insight_Source.dbo.Lease_Profile ON Insight_Source.dbo.ThirdParty_DealRelationshipDetail.EntityId = Insight_Source.dbo.Lease_Profile.LeaseId&#xA;  INNER JOIN Insight_Source.dbo.Lease_Profile Lease_ProfileLeaseThirdPartyRelationship ON Insight_Source.dbo.ThirdParty_DealRelationshipDetail.EntityID = Lease_ProfileLeaseThirdPartyRelationship.LeaseId&#xA;  INNER JOIN Insight_Source.dbo.ThirdParty_CustomerRelationshipDetail ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship ON Insight_Source.dbo.ThirdParty_DealRelationshipDetail.ThirdPartyCustomerRelationshipDetailID = ThirdParty_CustomerRelationshipDetailLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipDetailID&#xA;  INNER JOIN Insight_Source.dbo.LeaseThirdPartyNumberView LeaseThirdPartyNumberViewLeaseThirdPartyRelationship ON Insight_Source.dbo.ThirdParty_DealRelationshipDetail.ThirdPartyCustomerRelationshipDetailID = LeaseThirdPartyNumberViewLeaseThirdPartyRelationship.ThirdPartyCustomerRelationshipDetailID&#xA;  INNER JOIN Migration_Intermediate..LegalEntityLease lel on lel.LeaseID = Lease_Profile.LeaseID&#xA;  AND lel.LegalEntityNumber IS NOT NULL&#xA;WHERE&#xA;  Insight_Source.dbo.ThirdParty_DealRelationshipDetail.EntityTypeId = 5&#xA;  AND Insight_Source.dbo.ThirdParty_DealRelationshipDetail.ISAssigned = 1&#xA;  AND Insight_Source.dbo.Lease_Profile.StatusId IN (2);&#xA;&#xA;-- Target&#xA;SELECT &#xA;  c.Id AS LeaseId,&#xA;  c.sequencenumber,&#xA;  RelationShipType,&#xA;  p.PartyNumber AS ThirdPartyNumber&#xA;INTO #Target&#xA;FROM ContractThirdPartyRelationships cr&#xA;INNER JOIN contracts c ON c.id = cr.contractid&#xA;INNER JOIN CustomerThirdPartyRelationships r ON r.id = cr.ThirdPartyRelationshipId&#xA;INNER JOIN customers cus ON cus.id = r.Thirdpartyid&#xA;INNER JOIN parties p ON cus.id = p.id;&#xA;&#xA;SELECT&#xA;    S.LeaseId AS S_LeaseId,&#xA;    T.LeaseId AS T_LeaseId,&#xA;    CASE WHEN ISNULL(S.LeaseId, 0) = ISNULL(T.LeaseId, 0) THEN 'TRUE' ELSE 'FALSE' END AS LeaseId_Matched,&#xA;&#xA;    S.Sequencenumber AS S_Sequencenumber,&#xA;    T.Sequencenumber AS T_Sequencenumber,&#xA;    CASE WHEN ISNULL(S.Sequencenumber, 0) = ISNULL(T.Sequencenumber, 0) THEN 'TRUE' ELSE 'FALSE' END AS Sequencenumber_Matched,&#xA;&#xA;    S.RelationshipType AS S_RelationshipType,&#xA;    T.RelationshipType AS T_RelationshipType,&#xA;    CASE WHEN ISNULL(S.RelationshipType, '') = ISNULL(T.RelationshipType, '') THEN 'TRUE' ELSE 'FALSE' END AS RelationshipType_Matched,&#xA;&#xA;    S.ThirdPartyNumber AS S_ThirdPartyNumber,&#xA;    T.ThirdPartyNumber AS T_ThirdPartyNumber,&#xA;    CASE WHEN ISNULL(S.ThirdPartyNumber, '') = ISNULL(T.ThirdPartyNumber, '') THEN 'TRUE' ELSE 'FALSE' END AS ThirdPartyNumber_Matched&#xA;INTO #LeaseThirdPartyRecon&#xA;FROM #Source S&#xA;INNER JOIN #Target T&#xA;    ON S.LeaseId = T.LeaseId&#xA;   -- AND S.ThirdPartyNumber = T.ThirdPartyNumber;&#xA;&#xA;&#xA;  --select * from #LeaseThirdPartyRecon&#xA;&#xA;-- 10B. LeaseThirdPartyRecon.sql&#xA;&#xA; DROP TABLE IF EXISTS V5_Recon.dbo.LeaseThirdPartyRecon&#xA;&#xA; SELECT 'LeaseThirdPartyRecon' Recon, *&#xA; INTO V5_Recon.dbo.LeaseThirdPartyRecon&#xA; FROM #LeaseThirdPartyRecon&#xA;&#xA; SELECT *&#xA; FROM V5_Recon.dbo.LeaseThirdPartyRecon" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="205,42"
+          Id="Package\10B LeaseThirdPartyRecon"
+          TopLeft="219,59" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

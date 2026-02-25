@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 1:23:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{BE0F1294-60F7-4833-B974-7CCE0B845A4A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="5  BillToFieldWiseRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{310A1E0E-E1E2-4308-8287-982A3F3D78F5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\5 BillToFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B8FC1EFB-A7B4-47E4-B8B2-B8610A76E3AC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="5 BillToFieldWiseRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250929 BilltoesFieldWiseRecon:&#xA;DROP TABLE IF EXISTS ##BillToSource&#xA;DROP TABLE IF EXISTS ##BillToTarget&#xA;DROP TABLE IF EXISTS ##BillTo&#xA;DROP TABLE IF EXISTS BillToRecon&#xA;--Source table&#xA;SELECT&#xA;  ISNULL(TRIM(i.InvoiceGroupName), '') AS BillToName,&#xA;  ISNull(i.InvoiceGroupName, '') AS Code,&#xA;  i.CustomerName CustomerBillToName,&#xA;  Isnull(i.InvoiceComment, '') AS INVOICECOMMENT,&#xA;  i.IsPrimaryGroup IsPrimary,&#xA;  c.CustomerID,&#xA;  i.IsRentalInvoiceSplitByDeal SplitRentalInvoiceByContract,&#xA;  i.IsSplitCreditsByOriginalInvoice SplitCreditsByOriginalInvoice,&#xA;  i.IsLeaseRentalInvoiceSplitByLocation SplitLeaseRentalInvoiceByLocation,&#xA;  ISNull(&#xA;    (&#xA;      CAST(&#xA;        REPLACE(i.ToEmailAddresses, ',', ';') AS nvarchar(1000)&#xA;      )&#xA;    ),&#xA;    ''&#xA;  ) AS SendEmailNotificationTo,&#xA;  ISNULL(&#xA;    (&#xA;      CAST(&#xA;        REPLACE(i.CCEmailAddresses, ',', ';') AS nvarchar(1000)&#xA;      )&#xA;    ),&#xA;    ''&#xA;  ) AS SendCCEmailNotificationTo,&#xA;  CAST(IsNull(i.BCCEmailAddresses, '') AS nvarchar(1000)) AS SendBccEmailNotificationTo,&#xA;  c.AccountNumber partynumber&#xA;into&#xA;  ##BillToSource&#xA;FROM&#xA;  Insight_Source..invoicegroup_profile i&#xA;  JOIN Insight_Source..customer_profile c ON c.customerid = i.customerid&#xA;  AND C.CustomerStatusID = 1&#xA;WHERE&#xA;  I.isactive = 1&#xA;  --target table&#xA;SELECT&#xA;  TRIM(b.BillToName) AS BillToName,&#xA;  b.Name,&#xA;  b.CustomerBillToName,&#xA;  IsNull(b.InvoiceComment, '') AS INVOICECOMMENT,&#xA;  b.IsPrimary,&#xA;  b.SplitRentalInvoiceByContract,&#xA;  b.SplitCreditsByOriginalInvoice,&#xA;  b.SplitLeaseRentalInvoiceByLocation,&#xA;  IsNull(b.SendEmailNotificationTo, '') SendEmailNotificationTo,&#xA;  ISnull(b.SendCCEmailNotificationTo, '') SendCCEmailNotificationTo,&#xA;  ISnull(b.SendBccEmailNotificationTo, '') SendBccEmailNotificationTo,&#xA;  p.partynumber,&#xA;  b.CustomerId&#xA;into&#xA;  ##BillToTarget&#xA;FROM&#xA;  Insight_UAT..billtoes b&#xA;  JOIN Insight_UAT..customers c ON c.id = b.customerid&#xA;  JOIN Insight_UAT..parties p on p.id = b.customerid&#xA;  AND p.portfolioid = 1&#xA;  AND p.partynumber IN (&#xA;    SELECT&#xA;      CP.AccountNumber&#xA;    FROM&#xA;      Insight_Source..Customer_profile CP&#xA;    WHERE&#xA;      customerstatusid = 1&#xA;  )&#xA;ORDER BY&#xA;  P.PartyNumber&#xA;SELECT&#xA;  Source.BillToName S_BillToName,&#xA;  Target.BillToName T_BillToName,&#xA;  CASE&#xA;    WHEN ISNULL(Source.BillToName, 0) &lt;&gt; ISNULL(Target.BillToName, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; BillToName_Matched,&#xA;  Source.CustomerBillToName S_CustomerBillToName,&#xA;  Target.CustomerBillToName T_CustomerBillToName,&#xA;  CASE&#xA;    WHEN ISNULL(Source.CustomerBillToName, 0) &lt;&gt; ISNULL(Target.CustomerBillToName, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; CustomerBillToName_Matched,&#xA;  Source.INVOICECOMMENT S_INVOICECOMMENT,&#xA;  Target.INVOICECOMMENT T_INVOICECOMMENT,&#xA;  CASE&#xA;    WHEN ISNULL(Source.INVOICECOMMENT, 0) &lt;&gt; ISNULL(Target.INVOICECOMMENT, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; INVOICECOMMENT_Matched,&#xA;  Source.IsPrimary S_IsPrimary,&#xA;  Target.IsPrimary T_IsPrimary,&#xA;  CASE&#xA;    WHEN ISNULL(Source.IsPrimary, 0) &lt;&gt; ISNULL(Target.IsPrimary, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; IsPrimary_Matched,&#xA;  Source.SplitRentalInvoiceByContract S_SplitRentalInvoiceByContract,&#xA;  Target.SplitRentalInvoiceByContract T_SplitRentalInvoiceByContract,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SplitRentalInvoiceByContract, 0) &lt;&gt; ISNULL(Target.SplitRentalInvoiceByContract, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SplitRentalInvoiceByContract_Matched,&#xA;  Source.SplitCreditsByOriginalInvoice S_SplitCreditsByOriginalInvoice,&#xA;  Target.SplitCreditsByOriginalInvoice T_SplitCreditsByOriginalInvoice,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SplitCreditsByOriginalInvoice, 0) &lt;&gt; ISNULL(Target.SplitCreditsByOriginalInvoice, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SplitCreditsByOriginalInvoice_Matched,&#xA;  Source.SplitLeaseRentalInvoiceByLocation S_SplitLeaseRentalInvoiceByLocation,&#xA;  Target.SplitLeaseRentalInvoiceByLocation T_SplitLeaseRentalInvoiceByLocation,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SplitLeaseRentalInvoiceByLocation, 0) &lt;&gt; ISNULL(Target.SplitLeaseRentalInvoiceByLocation, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SplitLeaseRentalInvoiceByLocation_Matched,&#xA;  Source.SendEmailNotificationTo S_SendEmailNotificationTo,&#xA;  Target.SendEmailNotificationTo T_SendEmailNotificationTo,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SendEmailNotificationTo, 0) &lt;&gt; ISNULL(Target.SendEmailNotificationTo, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SendEmailNotificationTo_Matched,&#xA;  Source.SendCCEmailNotificationTo S_SendCCEmailNotificationTo,&#xA;  Target.SendCCEmailNotificationTo T_SendCCEmailNotificationTo,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SendCCEmailNotificationTo, 0) &lt;&gt; ISNULL(Target.SendCCEmailNotificationTo, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SendCCEmailNotificationTo_Matched,&#xA;  Source.SendBccEmailNotificationTo S_SendBccEmailNotificationTo,&#xA;  Target.SendBccEmailNotificationTo T_SendBccEmailNotificationTo,&#xA;  CASE&#xA;    WHEN ISNULL(Source.SendBccEmailNotificationTo, 0) &lt;&gt; ISNULL(Target.SendBccEmailNotificationTo, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; SendBccEmailNotificationTo_Matched,&#xA;  Source.partynumber S_Partynumber,&#xA;  Target.partynumber T_Partynumber,&#xA;  CASE&#xA;    WHEN ISNULL(Source.partynumber, 0) &lt;&gt; ISNULL(Target.partynumber, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; partynumber_Matched&#xA;INTO&#xA;  ##BillTo&#xA;FROM&#xA;  ##BillToSource Source&#xA;  INNER JOIN ##BillToTarget Target ON Source.BillToName = Target.BillToName&#xA;  AND Source.partynumber = Target.partynumber DECLARE @CreateTableScript NVARCHAR(max);&#xA;&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE BillToRecon  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##BillTo'&#xA;  );&#xA;&#xA;&#xA;EXEC sp_EXECutesql @CreateTableScript&#xA;&#xA;-- 5. BillToFieldWiseRecon_20250929.sql&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.BillToRecon&#xA;&#xA;--INSERT INTO&#xA;--  BillToRecon&#xA;&#xA;SELECT 'BillToRecon' Recon, *&#xA;INTO V5_Recon.dbo.BillToRecon&#xA;FROM ##BillTo&#xA;&#xA;  --SELECT * FROM BillToRecon&#xA;&#xA;SELECT * FROM V5_Recon.dbo.BillToRecon&#xA;&#xA;DROP TABLE IF EXISTS ##BillToSource&#xA;DROP TABLE IF EXISTS ##BillToTarget&#xA;DROP TABLE IF EXISTS ##BillTo&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="187,42"
+          Id="Package\5 BillToFieldWiseRecon"
+          TopLeft="194,105" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

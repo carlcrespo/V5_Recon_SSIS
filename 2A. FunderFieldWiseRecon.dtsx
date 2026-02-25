@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 9:30:55 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{F234479F-ECA3-46A6-8D5E-9A59610058F8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="2A  FunderFieldWiseRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{E14A1E26-80E2-4270-878E-2B78CD16E8E7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\2A FunderFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FD7FDBAF-54DF-47FC-AED9-693F480D0D46}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="2A FunderFieldWiseRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250929 FunderRecon&#xA;&#xA;DROP TABLE IF EXISTS ##targetFunders&#xA;DROP TABLE IF EXISTS ##sourceFunders&#xA;DROP TABLE IF EXISTS ##Funders&#xA;DROP TABLE IF EXISTS FunderRecon&#xA;--FunderFieldWiseRecon:&#xA;-- Funders Source&#xA;SELECT&#xA;  FundingSourceNumber 'PartyNumber',&#xA;  Company 'PartyName',&#xA;  CASE&#xA;    WHEN DoingBusinessAs = '' THEN null&#xA;    ELSE LTRIM(DoingBusinessAs)&#xA;  &#xA;END&#xA; 'DoingBusinessAs',&#xA;  (&#xA;    CASE&#xA;      WHEN FundingSource_Type_Cnfg.Description = 1 THEN 'Investor'&#xA;      WHEN FundingSource_Type_Cnfg.Description = 2 THEN 'Investor'&#xA;      WHEN FundingSource_Type_Cnfg.Description = 3 THEN 'Investor'&#xA;      WHEN FundingSource_Type_Cnfg.Description = 5 THEN 'Investor'&#xA;      ELSE 'Investor'&#xA;    &#xA;END&#xA;&#xA;  ) AS 'Type',&#xA;  ActivationDate 'ActivationDate',&#xA;  ActivationDate 'CreationDate',&#xA;  Company,&#xA;  FundingSourceId&#xA;INTO&#xA;  ##sourceFunders&#xA;FROM&#xA;  Insight_Source..FundingSource_profile&#xA;  INNER JOIN Insight_Source..FundingSource_Type_Cnfg on TypeId = FundingSourceTypeId&#xA;WHERE&#xA;  statusid = 2&#xA;  --AND [FundingSourceNumber] IN( SELECT partynumber fromInsight_UAT..funders f&#xA;  --INNER JOIN Insight_UAT..parties p&#xA;  --on f.id = p.id&#xA;  --AND p.portfolioid =1)&#xA;ORDER BY&#xA;  [FundingSourceNumber]&#xA;  -- Funders Target&#xA;SELECT&#xA;  PartyNumber,&#xA;  PartyName,&#xA;  DoingBusinessAs,&#xA;type,&#xA;ActivationDate 'ActivationDate',&#xA;CreationDate 'CreationDate',&#xA;CompanyName,&#xA;p.Id&#xA;INTO&#xA;  ##targetFunders&#xA;FROM&#xA;  Insight_UAT..funders f&#xA;  INNER JOIN Insight_UAT..parties p on f.id = p.id&#xA;  AND p.portfolioid = 1&#xA;ORDER BY&#xA;  p.PartyNumber&#xA;  --Matched&#xA;SELECT&#xA;  Source.PartyNumber S_PartyNumber,&#xA;  Target.PartyNumber T_PartyNumber,&#xA;  CASE&#xA;    WHEN (&#xA;      (&#xA;        ISNULL(Source.PartyNumber, 0) = ISNULL(Target.PartyNumber, 0)&#xA;      )&#xA;      OR (&#xA;        ISNULL(concat(Source.PartyNumber, '_F'), 0) = ISNULL(Target.PartyNumber, 0)&#xA;      )&#xA;    ) THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; PartyNumber_Matched,&#xA;  Source.PartyName S_PartyName,&#xA;  Target.PartyName T_PartyName,&#xA;  CASE&#xA;    WHEN ISNULL(Source.PartyName, 0) &lt;&gt; ISNULL(Target.PartyName, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; PartyName_Matched,&#xA;  Source.DoingBusinessAs S_DoingBusinessAs,&#xA;  Target.DoingBusinessAs T_DoingBusinessAs,&#xA;  CASE&#xA;    WHEN ISNULL(Source.DoingBusinessAs, 0) &lt;&gt; ISNULL(Target.DoingBusinessAs, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; DoingBusinessAs_Matched,&#xA;  Source.type S_type,&#xA;  Target.type T_type,&#xA;  CASE&#xA;    WHEN ISNULL(Source.type, 0) &lt;&gt; ISNULL(Target.type, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; type_Matched,&#xA;  Source.ActivationDate S_ActivationDate,&#xA;  Target.ActivationDate T_ActivationDate,&#xA;  CASE&#xA;    WHEN ISNULL(Source.ActivationDate, '1900-01-01') &lt;&gt; ISNULL(Target.ActivationDate, '1900-01-01') THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; ActivationDate_Matched,&#xA;  Source.CreationDate S_CreationDate,&#xA;  Target.CreationDate T_CreationDate,&#xA;  CASE&#xA;    WHEN ISNULL(Source.CreationDate, '1900-01-01') &lt;&gt; ISNULL(Target.CreationDate, '1900-01-01') THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; CreationDate_Matched&#xA;INTO&#xA;  ##Funders&#xA;FROM&#xA;  ##sourceFunders Source&#xA;  INNER JOIN ##targetFunders Target ON Source.PartyNumber = Target.PartyNumber&#xA;  OR concat(source.Partynumber, '_F') = Target.PartyNumber&#xA;  DECLARE @CreateTableScript NVARCHAR(max);&#xA;&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE FunderRecon  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##Funders'&#xA;  );&#xA;&#xA;&#xA;EXEC sp_Executesql @CreateTableScript&#xA;&#xA;-- 2A. FunderFieldWiseRecon_20250929.sql&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.FunderRecon&#xA;&#xA;--INSERT INTO&#xA;--  FunderRecon&#xA;&#xA;SELECT 'FunderRecon' Recon, *&#xA;INTO V5_Recon.dbo.FunderRecon&#xA;FROM ##Funders&#xA;&#xA; --SELECT * FROM FunderRecon&#xA;&#xA;SELECT *&#xA;FROM V5_Recon.dbo.FunderRecon&#xA;&#xA;DROP TABLE IF EXISTS ##targetFunders&#xA;DROP TABLE IF EXISTS ##sourceFunders&#xA;DROP TABLE IF EXISTS ##Funders&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="201,42"
+          Id="Package\2A FunderFieldWiseRecon"
+          TopLeft="246,67" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

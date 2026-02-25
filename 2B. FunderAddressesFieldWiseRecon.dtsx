@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 10:40:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{1739BA88-3344-4816-B555-DC4464AB1A32}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="2B  FunderAddressesFieldWiseRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{B6C922F0-EBF4-4B1A-943B-6AF47B2834E1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\2B FunderAddressesFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{23E2DA5D-2508-4FB3-92C4-29BAE08590F4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="2B FunderAddressesFieldWiseRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250929 FunderAddressRecon&#xA;&#xA;DROP TABLE IF EXISTS ##FunderAddressSource&#xA;DROP TABLE IF EXISTS ##FunderAddressTarget&#xA;DROP TABLE IF EXISTS ##FunderAddress&#xA;DROP TABLE IF EXISTS FunderAddressRecon&#xA;SELECT&#xA;  fp.FundingSourceNumber 'PartyNumber',&#xA;  ca.ContactAddressId 'UniqueIdentifier',&#xA;  RTRIM(ca.Address) 'AddressLine1',&#xA;  CASE&#xA;    WHEN ISNULL(ca.Address2, '') = '' THEN NULL&#xA;    ELSE TRIM(ca.Address2)&#xA;  &#xA;END&#xA; AS 'AddressLine2',&#xA;  ca.City,&#xA;  CASE&#xA;    WHEN ISNULL(ca.County, '') = '' THEN NULL&#xA;    ELSE ca.County&#xA;  &#xA;END&#xA; AS County,&#xA;  ca.ZIP AS PostalCode,&#xA;  CASE&#xA;    WHEN ISNULL(ca.Description, '') = '' THEN NULL&#xA;    ELSE ca.Description&#xA;  &#xA;END&#xA; AS Description,&#xA;  ca.IsMainAddress 'IsMain',&#xA;  (&#xA;  CASE WHEN SSCM.StateID IS NOT NULL THEN SSCM.LW5StateShortName&#xA;&#x9;&#x9;ELSE StateShortName&#xA;END&#xA;  )&#xA; AS State,&#xA;&#xA;  (&#xA;    Ca.CountryShortCode&#xA;    &#xA;  ) AS Country,&#xA;  ca.IsForDocumentation,&#xA;  ca.EntityId 'PartyId'&#xA;INTO&#xA;  ##FunderAddressSource&#xA;FROM&#xA;  Insight_Source..ContactAddressView ca&#xA;  INNER JOIN Insight_Source..Contact_Address c ON ca.ContactAddressID = c.ContactAddressID&#xA;  INNER JOIN Insight_Source..FundingSource_Profile fp ON fp.FundingSourceId = c.EntityID&#xA;  LEFT JOIN Migration_Intermediate.dbo.StatesShortCodeMapping SSCM on SSCM.StateID = ca.StateID&#xA;  AND fp.StatusID = 2 --AND fp.TypeId=2&#xA;WHERE&#xA;  ca.EntityTypeID = 3&#xA;  AND c.IsActive = 1&#xA;SELECT&#xA;  p.PartyNumber,&#xA;  pa.UniqueIdentifier,&#xA;  pa.AddressLine1,&#xA;  pa.AddressLine2,&#xA;  pa.City,&#xA;  pa.Division 'County',&#xA;  pa.PostalCode,&#xA;  pa.Description,&#xA;  pa.IsMain,&#xA;  s.ShortName AS State,&#xA;  c.ShortName AS Country,&#xA;  pa.IsForDocumentation,&#xA;  pa.PartyId&#xA;INTO&#xA;  ##FunderAddressTarget&#xA;FROM&#xA;  Insight_UAT..Partyaddresses pa&#xA;  INNER JOIN Insight_UAT..Parties p ON pa.PartyId = p.Id&#xA;  INNER JOIN Insight_UAT..Funders v ON v.Id = p.Id&#xA;  AND p.PortfolioId = 1&#xA;  INNER JOIN Insight_UAT..States s ON s.Id = pa.StateId&#xA;  INNER JOIN Insight_UAT..Countries c on c.id = s.countryid&#xA;SELECT Distinct&#xA;  source.PartyNumber AS 'S_PartyNumber',&#xA;  target.PartyNumber AS 'T_PartyNumber',&#xA;  CASE&#xA;    WHEN (&#xA;      (&#xA;        ISNULL(Source.PartyNumber, 0) = ISNULL(Target.PartyNumber, 0)&#xA;      )&#xA;      OR (&#xA;        ISNULL(concat(Source.PartyNumber, '_F'), 0) = ISNULL(Target.PartyNumber, 0)&#xA;      )&#xA;    ) THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; PartyNumber_Matched,&#xA;  source.UniqueIdentifier AS 'S_UniqueIdentifier',&#xA;  target.UniqueIdentifier AS 'T_UniqueIdentifier',&#xA;  CASE&#xA;    WHEN ISNULL(Source.UniqueIdentifier, 0) &lt;&gt; ISNULL(Target.UniqueIdentifier, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; UniqueIdentifier_Matched,&#xA;  source.AddressLine1 AS 'S_AddressLine1',&#xA;  target.AddressLine1 AS 'T_AddressLine1',&#xA;  CASE&#xA;    WHEN (&#xA;      (&#xA;        ISNULL(Source.AddressLine1, 0) = ISNULL(Target.AddressLine1, 0)&#xA;      )&#xA;      OR (&#xA;        ISNULL(concat(Target.AddressLine1, CHAR(10)), 0) = ISNULL(Source.AddressLine1, 0)&#xA;      )&#xA;    ) THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; AddressLine1_Matched,&#xA;  source.AddressLine2 AS 'S_AddressLine2',&#xA;  target.AddressLine2 AS 'T_AddressLine2',&#xA;  CASE&#xA;    WHEN ISNULL(Source.AddressLine2, 0) &lt;&gt; ISNULL(Target.AddressLine2, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; AddressLine2_Matched,&#xA;  source.City AS 'S_City',&#xA;  target.City AS 'T_City',&#xA;  CASE&#xA;    WHEN ISNULL(Source.City, 0) &lt;&gt; ISNULL(Target.City, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; City_Matched,&#xA;  source.County AS 'S_County',&#xA;  target.County AS 'T_County',&#xA;  CASE&#xA;    WHEN ISNULL(Source.County, 0) &lt;&gt; ISNULL(Target.County, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; County,&#xA;  source.PostalCode AS 'S_PostalCode',&#xA;  target.PostalCode AS 'T_PostalCode',&#xA;  CASE&#xA;    WHEN ISNULL(Source.PostalCode, 0) &lt;&gt; ISNULL(Target.PostalCode, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; PostalCode_Matched,&#xA;  source.Description AS 'S_Description',&#xA;  target.Description AS 'T_Description',&#xA;  CASE&#xA;    WHEN ISNULL(Source.Description, 0) &lt;&gt; ISNULL(Target.Description, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; Description_Matched,&#xA;  source.IsMain AS 'S_IsMain',&#xA;  target.IsMain AS 'T_IsMain',&#xA;  CASE&#xA;    WHEN ISNULL(Source.IsMain, 0) &lt;&gt; ISNULL(Target.IsMain, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; IsMain_Matched,&#xA;  source.State AS 'S_State',&#xA;  target.State AS 'T_State',&#xA;  CASE&#xA;    WHEN ISNULL(Source.State, 0) &lt;&gt; ISNULL(Target.State, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; State_Matched,&#xA;  source.Country AS 'S_Country',&#xA;  target.Country AS 'T_Country',&#xA;  CASE&#xA;    WHEN ISNULL(Source.Country, 0) &lt;&gt; ISNULL(Target.Country, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; Country_Matched,&#xA;  source.IsForDocumentation AS 'S_IsForDocumentation',&#xA;  target.IsForDocumentation AS 'T_IsForDocumentation',&#xA;  CASE&#xA;    WHEN ISNULL(Source.IsForDocumentation, 0) &lt;&gt; ISNULL(Target.IsForDocumentation, 0) THEN 'FALSE'&#xA;    ELSE 'TRUE'&#xA;  &#xA;END&#xA; IsForDocumentation_Matched&#xA;into&#xA;  ##FunderAddress&#xA;FROM&#xA;  ##FunderAddressSource source&#xA;  INNER JOIN ##FunderAddressTarget target on (&#xA;    source.PartyNumber = target.PartyNumber&#xA;    OR concat(source.PartyNumber, '_F') = target.PartyNumber&#xA;  )&#xA;  AND source.UniqueIdentifier = target.UniqueIdentifier&#xA;  &#xA;  DECLARE @CreateTableScript NVARCHAR(max);&#xA;&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE FunderAddressRecon  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##FunderAddress'&#xA;  );&#xA;&#xA;&#xA;EXEC sp_Executesql @CreateTableScript&#xA;&#xA;-- FunderAddressRecon&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.FunderAddressRecon&#xA;--INSERT INTO&#xA;--  FunderAddressRecon&#xA;&#xA;SELECT 'FunderAddressRecon' Recon, *&#xA;INTO V5_Recon.dbo.FunderAddressRecon&#xA;FROM ##FunderAddress&#xA;&#xA; --SELECT * FROM FunderAddressRecon&#xA;&#xA;SELECT *&#xA;FROM V5_Recon.dbo.FunderAddressRecon&#xA;&#xA;DROP TABLE IF EXISTS ##FunderAddressSource&#xA;DROP TABLE IF EXISTS ##FunderAddressTarget&#xA;DROP TABLE IF EXISTS ##FunderAddress&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="248,42"
+          Id="Package\2B FunderAddressesFieldWiseRecon"
+          TopLeft="168,133" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

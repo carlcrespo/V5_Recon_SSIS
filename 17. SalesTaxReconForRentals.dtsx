@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/30/2025 8:33:16 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{7DFBDB57-B4AA-4B55-AB07-119BE307A2CD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="17  SalesTaxReconForRentals"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{6DFAD29A-AD00-4A0F-BC69-352653BF3205}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\17 SalesTaxReconForRentals"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{01056532-3758-4B2C-AF72-B01BBFCAC2AE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="17 SalesTaxReconForRentals"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250930 SalesTaxRecon&#xA;&#xA;DROP TABLE IF EXISTS ##SalesTaxSource&#xA;DROP TABLE IF EXISTS ##SalesTaxTarget&#xA;DROP TABLE IF EXISTS ##SalesTaxRecon&#xA;DROP TABLE IF EXISTS SalesTaxRecon&#xA;DECLARE @TransactionDate DateTime = (Select Top 1 Date from Migration_Intermediate..TransactionDate)&#xA;SELECT&#xA;  Lease_Profile.Leaseid,&#xA;  Lease_Profile.SequenceNumber,&#xA;  Receivable_Tax.DueDate,&#xA;  --,Receivable_LeasePaymentDetail.InventoryID,&#xA;  'FixedTerm' AS ReceivableType,&#xA;  Sum(Receivable_LeasePaymentDetail.Amount) AS Amount,&#xA;  sum(Receivable_leasepaymentdetail.balance) AS Balance,&#xA;  sum(Receivable_Tax.TaxAmount) AS TaxAmount,&#xA;  sum(Receivable_Tax.TaxBalance) AS TaxBalance&#xA;into&#xA;  ##SalesTaxSource&#xA;FROM&#xA;  Insight_Source..Receivable_Tax&#xA;  JOIN Insight_Source..Receivable_LeasePaymentDetail on Receivable_LeasePaymentDetail.ReceivableID = Receivable_Tax.ReceivableID&#xA;  AND Receivable_Tax.ReceivableTypeID = 1&#xA;  AND Receivable_LeasePaymentDetail.IsDummy = 0&#xA;  AND Receivable_LeasePaymentDetail.ReceivableAdjustmentID IS NULL&#xA;  JOIN Insight_Source..Receivable_LeasePaymentHeader on Receivable_LeasePaymentHeader.ReceivableHeaderID = Receivable_LeasePaymentDetail.ReceivableHeaderID&#xA;  JOIN Insight_Source..Lease_InventoryInLease on Receivable_Tax.LeaseID = Lease_InventoryInLease.LeaseID&#xA;  AND Lease_InventoryInLease.InventoryID = Receivable_LeasePaymentDetail.InventoryID&#xA;  AND Receivable_LeasePaymentHeader.IsActive = 1&#xA;  AND Lease_InventoryInLease.IsInLease = 1&#xA;  JOIN Insight_Source..Lease_Profile on Lease_Profile.LeaseID = Receivable_LeasePaymentHeader.LeaseID&#xA;  AND Lease_Profile.StatusId = 2&#xA;  AND Receivable_Tax.DueDate &gt;= @TransactionDate&#xA;  AND Receivable_Tax.IsActive = 1&#xA;GROUP BY&#xA;  Lease_Profile.LeaseId,&#xA;  Lease_Profile.SequenceNumber,&#xA;  Receivable_Tax.DueDate&#xA;UNION&#xA;SELECT&#xA;  Lease_Profile.Leaseid,&#xA;  Lease_Profile.SequenceNumber,&#xA;  Receivable_Tax.DueDate,&#xA;  CASE&#xA;    WHEN Receivable_Tax.Receivabletypeid = 2 THEN 'InterimRent'&#xA;    WHEN Receivable_Tax.Receivabletypeid = 3 THEN 'OTP'&#xA;    WHEN Receivable_Tax.Receivabletypeid = 26 THEN 'InterimInterest'&#xA;    ELSE null&#xA;  &#xA;END&#xA; AS ReceivableType,&#xA;  Sum(Receivable_OtherPaymentDetail.Amount) AS Amount,&#xA;  sum(Receivable_OtherPaymentDetail.balance) AS Balance,&#xA;  Sum(Receivable_Tax.TaxAmount) AS TaxAmount,&#xA;  Sum(Receivable_Tax.TaxBalance) AS TaxBalance&#xA;FROM&#xA;  Insight_Source..Receivable_Tax&#xA;  JOIN Insight_Source..Receivable_OtherPaymentDetail on Receivable_OtherPaymentDetail.ReceivableID = Receivable_Tax.ReceivableID&#xA;  AND Receivable_Tax.ReceivableTypeID IN (2, 3, 26)&#xA;  AND Receivable_OtherPaymentDetail.IsDummy = 0&#xA;  AND Receivable_OtherPaymentDetail.ReceivableAdjustmentID IS NULL&#xA;  JOIN Insight_Source..Receivable_OtherPaymentHeader on Receivable_OtherPaymentHeader.ReceivableHeaderID = Receivable_OtherPaymentDetail.ReceivableHeaderID&#xA;  JOIN Insight_Source..Lease_InventoryInLease on Receivable_Tax.LeaseID = Lease_InventoryInLease.LeaseID&#xA;  AND Lease_InventoryInLease.InventoryID = Receivable_OtherPaymentDetail.InventoryID&#xA;  AND Receivable_OtherPaymentHeader.IsActive = 1&#xA;  --AND Lease_InventoryInLease.IsInLease = 1&#xA;  INNER JOIN Insight_UAT..Assets A on A.Id = Lease_InventoryInLease.InventoryID&#xA;  JOIN Insight_Source..Lease_Profile on Lease_Profile.LeaseID = Receivable_OtherPaymentHeader.LeaseID&#xA;  AND Lease_Profile.StatusId = 2&#xA;  AND Receivable_Tax.DueDate &gt;= @TransactionDate&#xA;  AND Receivable_Tax.IsActive = 1&#xA;  --AND Receivable_OtherPaymentDetail.Amount&lt;&gt;0 AND Receivable_Tax.TaxAmount&lt;&gt;0&#xA;  WHERE  A.FinancialType='Deposit'   or Lease_InventoryInLease.IsInLease=1&#xA;GROUP BY&#xA;  Lease_Profile.LeaseId,&#xA;  Lease_Profile.SequenceNumber,&#xA;  Receivable_Tax.DueDate,&#xA;  Receivable_Tax.Receivabletypeid&#xA;  --AND Lease_Profile.SequenceNumber = '150586-124'&#xA;ORDER BY&#xA;  1,&#xA;  2&#xA;SELECT&#xA;  Contracts.id AS LeaseId,&#xA;  Contracts.Sequencenumber,&#xA;  Receivables.DueDate --,Assets.Id AS AssetId&#xA;,&#xA;  Receivables.IncomeType AS ReceivableType,&#xA;  sum(ReceivableDetails.Amount_Amount) Amount,&#xA;  sum(ReceivableDetails.Balance_Amount) Balance,&#xA;  Sum(ReceivableTaxDetails.Amount_Amount) TaxAmount,&#xA;  Sum(ReceivableTaxDetails.Balance_Amount) TaxBalance&#xA;INTO&#xA;  ##SalesTaxTarget&#xA;FROM&#xA;  Insight_UAT..Contracts&#xA;  JOIN Insight_UAT..LeaseFinances ON LeaseFinances.ContractId = Contracts.Id&#xA;  AND LeaseFinances.IsCurrent = 1&#xA;  AND Insight_UAT..LeaseFinances.BookingStatus = 'Commenced'&#xA;  JOIN Insight_UAT..LeaseFinanceDetails ON LeaseFinances.Id = LeaseFinanceDetails.Id&#xA;  JOIN Insight_UAT..Receivables ON Insight_UAT..Receivables.EntityId = Insight_UAT..Contracts.Id&#xA;  AND Insight_UAT..Receivables.IsActive = 1&#xA;  AND Insight_UAT..Receivables.IncomeType IN (&#xA;    'FixedTerm',&#xA;    'InterimInterest',&#xA;    'InterimRent',&#xA;    'OTP'&#xA;  )&#xA;  AND Insight_UAT..Receivables.EntityType = 'CT'&#xA;  JOIN Insight_UAT..ReceivableDetails on ReceivableDetails.ReceivableId = Receivables.Id&#xA;  --JOIN Insight_UAT..Assets ON ReceivableDetails.Assetid = Assets.Id&#xA;  JOIN Insight_UAT..ReceivableTaxes on ReceivableTaxes.ReceivableId = Receivables.Id&#xA;  JOIN Insight_UAT..ReceivableTaxDetails on ReceivableTaxDetails.ReceivableDetailId = ReceivableDetails.Id&#xA;  AND Receivables.DueDate &gt;= @TransactionDate&#xA;GROUP BY&#xA;  Contracts.id,&#xA;  Contracts.Sequencenumber,&#xA;  Receivables.DueDate,&#xA;  Receivables.IncomeType&#xA;ORDER BY&#xA;  1,&#xA;  2,&#xA;  3&#xA;SELECT&#xA;  ##SalesTaxSource.SequenceNumber,&#xA;  ##SalesTaxTarget.ReceivableType,&#xA;  ##SalesTaxSource.DueDate SourceDueDate,&#xA;  ##SalesTaxTarget.DueDate TargetDueDate,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.DueDate = ##SalesTaxTarget.DueDate THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; DueDatetMatches,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.ReceivableType = ##SalesTaxTarget.ReceivableType THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; ReceivableTypeMatches,&#xA;  ##SalesTaxSource.Amount S_Amount,&#xA;  ##SalesTaxTarget.Amount T_Amount,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.Amount = ##SalesTaxTarget.Amount THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; AmountMatches,&#xA;  ##SalesTaxSource.Balance S_Balance,&#xA;  ##SalesTaxTarget.Balance T_Balance,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.Balance = ##SalesTaxTarget.Balance THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; BalanceMatches,&#xA;  ##SalesTaxSource.TaxAmount S_TaxAmount,&#xA;  ##SalesTaxTarget.TaxAmount T_TaxAmount,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.TaxAmount = ##SalesTaxTarget.TaxAmount THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; TaxAmountMatches,&#xA;  ##SalesTaxSource.TaxBalance S_TaxBalance,&#xA;  ##SalesTaxTarget.TaxBalance T_TaxBalance,&#xA;  CASE&#xA;    WHEN ##SalesTaxSource.TaxBalance = ##SalesTaxTarget.TaxBalance THEN 'TRUE'&#xA;    ELSE 'FALSE'&#xA;  &#xA;END&#xA; TaxBalanceMatches&#xA;INTO&#xA;  ##SalesTaxRecon&#xA;FROM&#xA;  ##SalesTaxSource&#xA;  JOIN ##SalesTaxTarget on ##SalesTaxSource.LeaseId = ##SalesTaxTarget.LeaseId&#xA;  AND ##SalesTaxSource.DueDate = ##SalesTaxTarget.DueDate&#xA;  AND ##SalesTaxSource.ReceivableType = ##SalesTaxTarget.ReceivableType&#xA;ORDER BY&#xA;  ##SalesTaxSource.SequenceNumber,&#xA;  ##SalesTaxSource.DueDate DECLARE @CreateTableScript NVARCHAR(max);&#xA;&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE SalesTaxRecon  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##SalesTaxRecon'&#xA;  );&#xA;&#xA;&#xA;EXEC sp_EXECutesql @CreateTableScript&#xA;&#xA;&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.SalesTaxRecon&#xA;&#xA;--INSERT INTO&#xA;--  SalesTaxRecon&#xA;&#xA;SELECT 'SalesTaxRecon' Recon, *&#xA;INTO V5_Recon.dbo.SalesTaxRecon&#xA;FROM ##SalesTaxRecon&#xA;&#xA;--SELECT&#xA;--  *&#xA;--FROM&#xA;--  SalesTaxRecon&#xA;&#xA;SELECT *&#xA;FROM V5_Recon.dbo.SalesTaxRecon&#xA;&#xA;DROP TABLE IF EXISTS ##SalesTaxSource&#xA;DROP TABLE IF EXISTS ##SalesTaxTarget&#xA;GO&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\17 SalesTaxReconForRentals"
+          TopLeft="174,84" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

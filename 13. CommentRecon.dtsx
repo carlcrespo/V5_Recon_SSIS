@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/29/2025 2:16:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{161AE771-756D-4ABA-BBF6-B167FD8951D1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="13  CommentRecon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{68A19A5B-7ECD-4F0A-AA8E-ED2EDCD12012}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\13 CommentRecon"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FF568F34-226A-4562-92D1-2010EF96BC92}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="13 CommentRecon"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1092E1CA-43B4-4317-8186-049CB537D513}"
+          SQLTask:SqlStatementSource="-- 20250929 CommentRecon&#xA;DROP TABLE IF EXISTS ##CommentSource&#xA;DROP TABLE IF EXISTS ##CommentTarget&#xA;DROP TABLE IF EXISTS ##Comment&#xA;DROP TABLE IF EXISTS CommentRecon&#xA;&#x9;&#xA;--Source&#xA;SELECT commentID&#xA;&#x9;,CommentTypeName&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN (&#xA;&#x9;&#x9;&#x9;&#x9;len(Title) = 0&#xA;&#x9;&#x9;&#x9;&#x9;OR Title IS NULL&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;THEN CommentTypeName&#xA;&#x9;&#x9;ELSE Title&#xA;&#x9;&#x9;END AS Title&#xA;&#x9;,Body&#xA;&#x9;,EntityTypeName&#xA;&#x9;,EntityTypeValue&#xA;&#x9;,Cast(CreatedTime AS DATETIME) AS CreatedTime&#xA;&#x9;,AuthorLoginName&#xA;&#x9;,FollowUpDate&#xA;&#x9;,FollowUpByLoginName&#xA;INTO ##CommentSource&#xA;FROM Insight_Source.[dbo].[CommentsView]&#xA;WHERE threadnumber = 1&#xA;&#xA;--Target&#xA;SELECT ct.Name AS CommentTypename&#xA;&#x9;,c.Title&#xA;&#x9;,CAST(REPLACE(REPLACE(c.Body, '&lt;p&gt;', ''), '&lt;/p&gt;', '') as nvarchar(1000)) AS Body&#xA;&#x9;,cec.UserFriendlyName AS Entitytypename&#xA;&#x9;,COALESCE(customer.partynumber, a.alias, contract.sequencenumber) AS EntityTypeValue&#xA;&#x9;,Cast(c.OriginalCreatedTime AS DATETIME) AS CreatedTime&#xA;&#x9;,u.LoginName AS AuthorLoginName&#xA;&#x9;,c.FollowUpDate&#xA;&#x9;,uf.LoginName AS FollowUpByLoginName&#xA;INTO ##CommentTarget&#xA;FROM Insight_UAT..comments c&#xA;JOIN Insight_UAT..commenttypes ct ON ct.id = c.CommentTypeId&#xA;JOIN Insight_UAT..EntityConfigs cec ON cec.id = c.EntityTypeId&#xA;JOIN Insight_UAT..users u ON u.id = c.AuthorId&#xA;JOIN Insight_UAT..users uf ON uf.id = c.FollowUpById&#xA;LEFT JOIN Insight_UAT..leasefinances lf ON lf.id = c.EntityId&#xA;&#x9;AND cec.Name = 'LeaseFinance'&#xA;LEFT JOIN Insight_UAT..contracts contract ON contract.id = lf.ContractId&#xA;LEFT JOIN Insight_UAT..Assets A ON A.id = c.EntityId&#xA;&#x9;AND cec.Name = 'Asset'&#xA;LEFT JOIN Insight_UAT..parties customer ON customer.id = c.EntityId&#xA;&#x9;AND cec.Name = 'Customer'&#xA;&#xA;SELECT DISTINCT source.CommentID&#xA;&#x9;,Source.Title S_Title&#xA;&#x9;,Target.Title T_Title&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.Title, 0) &lt;&gt; ISNULL(Target.Title, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END Title_Matched&#xA;&#x9;,Source.Body S_Body&#xA;&#x9;,Target.Body T_Body&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.Body, 0) &lt;&gt; ISNULL(Target.Body, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END Body_Matched&#xA;&#x9;,Source.EntityTypeName S_EntityTypeName&#xA;&#x9;,Target.EntityTypeName T_EntityTypeName&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.EntityTypeName, 0) &lt;&gt; ISNULL(Target.EntityTypeName, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END EntityTypeName_Matched&#xA;&#x9;,Source.EntityTypeValue S_EntityTypeValue&#xA;&#x9;,Target.EntityTypeValue T_EntityTypeValue&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.EntityTypeValue, 0) &lt;&gt; ISNULL(Target.EntityTypeValue, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END EntityTypeValue_Matched&#xA;&#x9;,Source.CreatedTime AS 'S_CreatedTime'&#xA;&#x9;,Target.CreatedTime AS 'T_CreatedTime'&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.CreatedTime, '1900-01-01') &lt;&gt; ISNULL(Target.CreatedTime, '1900-01-01')&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END CreatedTime_Matched&#xA;&#x9;,Source.AuthorLoginName S_AuthorLoginName&#xA;&#x9;,Target.AuthorLoginName T_AuthorLoginName&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.AuthorLoginName, 0) &lt;&gt; ISNULL(Target.AuthorLoginName, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END AuthorLoginName_Matched&#xA;&#x9;,Source.FollowUpDate AS 'S_FollowUpDate'&#xA;&#x9;,Target.FollowUpDate AS 'T_FollowUpDate'&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.FollowUpDate, '1900-01-01') &lt;&gt; ISNULL(Target.FollowUpDate, '1900-01-01')&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END FollowUpDate_Matched&#xA;&#x9;,Source.FollowUpByLoginName S_FollowUpByLoginName&#xA;&#x9;,Target.FollowUpByLoginName T_FollowUpByLoginName&#xA;&#x9;,CASE &#xA;&#x9;&#x9;WHEN ISNULL(Source.FollowUpByLoginName, 0) &lt;&gt; ISNULL(Target.FollowUpByLoginName, 0)&#xA;&#x9;&#x9;&#x9;THEN 'FALSE'&#xA;&#x9;&#x9;ELSE 'TRUE'&#xA;&#x9;&#x9;END FollowUpByLoginName_Matched&#xA;INTO ##Comment&#xA;FROM ##CommentSource source&#xA;JOIN ##CommentTarget target ON target.Title = source.Title&#xA;&#x9;AND target.Entitytypename = source.Entitytypename&#xA;&#x9;AND target.Body = source.body&#xA;&#x9;AND source.entitytypevalue = target.entitytypevalue&#xA;&#x9;AND source.createdtime = target.createdtime&#xA;&#xA;DECLARE @CreateTableScript NVARCHAR(max);&#xA;SET&#xA;  @CreateTableScript = (&#xA;    SELECT&#xA;      'CREATE TABLE CommentRecon  (' + STRING_AGG(&#xA;        COLUMN_NAME + ' ' + DATA_TYPE + CASE&#xA;          WHEN DATA_TYPE LIKE 'nvarchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE LIKE 'varchar%' THEN '(' + CAST(CHARACTER_MAXIMUM_LENGTH AS VARCHAR(5)) + ')'&#xA;          WHEN DATA_TYPE IN ('decimal', 'numeric') THEN '(' + CAST(NUMERIC_PRECISION AS VARCHAR(3)) + ',' + CAST(NUMERIC_SCALE AS VARCHAR(3)) + ')'&#xA;          ELSE ''&#xA;        &#xA;END&#xA;,&#xA;        ', '&#xA;      ) + ');'&#xA;    FROM&#xA;      tempdb.INFORMATION_SCHEMA.COLUMNS&#xA;    WHERE&#xA;      TABLE_NAME = '##Comment'&#xA;  );&#xA;&#xA;&#xA;EXEC sp_Executesql @CreateTableScript&#xA;&#xA;-- 13. CommentRecon.sql&#xA;&#xA;DROP TABLE IF EXISTS V5_Recon.dbo.CommentRecon&#xA;&#xA;--INSERT INTO&#xA;--  CommentRecon&#xA;&#xA;SELECT 'CommentRecon' Recon, *&#xA;INTO V5_Recon.dbo.CommentRecon&#xA;FROM ##Comment&#xA;&#xA;  --SELECT * FROM CommentRecon&#xA;&#xA;SELECT * &#xA;FROM V5_Recon.dbo.CommentRecon&#xA;&#xA;DROP TABLE IF EXISTS ##CommentSource&#xA;DROP TABLE IF EXISTS ##CommentTarget&#xA;DROP TABLE IF EXISTS ##Comment&#xA;&#xA; " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,42"
+          Id="Package\13 CommentRecon"
+          TopLeft="157,68" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

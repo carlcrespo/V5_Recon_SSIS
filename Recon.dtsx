@@ -1,0 +1,1566 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/30/2025 11:16:30 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IICL01842"
+  DTS:CreatorName="IIC2\!ccrespo"
+  DTS:DTSID="{6E47B1B7-290A-433E-AC9A-18351D4BD566}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Recon"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{500ED059-FD27-4F59-89C4-B465B67A827B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\10A EquipmentBreakdownRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="10A. EquipmentBreakdownRecon.dtsx"
+      DTS:DTSID="{08B50991-1191-4C9C-9730-1373B36B9CC9}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="10A EquipmentBreakdownRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>10A. EquipmentBreakdownRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\10B LeaseThirdPartyRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="10B. LeaseThirdPartyRecon.dtsx"
+      DTS:DTSID="{09854E98-B7D2-4B42-9B8B-A31D7EA24EBF}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="10B LeaseThirdPartyRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>10B. LeaseThirdPartyRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\11 PropertyTaxRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="11. PropertyTaxRecon.dtsx"
+      DTS:DTSID="{F9B6E99D-396C-4F4B-98AD-5C8E155BC2AF}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="11 PropertyTaxRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>11. PropertyTaxRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\12 CreditProfileRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="12. CreditProfileRecon.dtsx"
+      DTS:DTSID="{C47DF403-77C9-41AD-B976-42A8488EFC03}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="12 CreditProfileRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>12. CreditProfileRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\13 CommentRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="13. CommentRecon.dtsx"
+      DTS:DTSID="{7E65D24C-2124-4FA7-8506-93E988590043}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="13 CommentRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>13. CommentRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14A SundryRecon_Active"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14A. SundryRecon_Active.dtsx"
+      DTS:DTSID="{42107346-EEDA-49EB-B6B2-09BBAA445953}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14A SundryRecon_Active"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14A. SundryRecon_Active.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14B SundryRecon_PaidOff"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14B. SundryRecon_PaidOff.dtsx"
+      DTS:DTSID="{C4489727-726D-48D1-90D9-6AAC2C8E5C11}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14B SundryRecon_PaidOff"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14B. SundryRecon_PaidOff.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14C SundryReconForContractBalances_CT"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14C. SundryReconForContractBalances_CT.dtsx"
+      DTS:DTSID="{44A80D34-86A7-4D79-BE8A-61318A944058}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14C SundryReconForContractBalances_CT"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14C. SundryReconForContractBalances_CT.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14D SundryReconForContractBalances_CU"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14D. SundryReconForContractBalances_CU.dtsx"
+      DTS:DTSID="{E187816B-EB9D-4690-A7D4-7EC254967B15}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14D SundryReconForContractBalances_CU"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14D. SundryReconForContractBalances_CU.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14E SundrySalesTaxReconForContractBalances_CT"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14E. SundrySalesTaxReconForContractBalances_CT.dtsx"
+      DTS:DTSID="{9FBF3A6C-5C2A-4802-A891-2DD07A54353E}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14E SundrySalesTaxReconForContractBalances_CT"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14E. SundrySalesTaxReconForContractBalances_CT.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14F SundrySalesTaxReconForContractBalances_CU"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14F. SundrySalesTaxReconForContractBalances_CU.dtsx"
+      DTS:DTSID="{5ACC5CFB-125D-4467-B321-1F75EA1F6749}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14F SundrySalesTaxReconForContractBalances_CU"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14F. SundrySalesTaxReconForContractBalances_CU.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\14G SundryPropertyTaxPaidOffRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="14G. SundryPropertyTaxPaidOffRecon.dtsx"
+      DTS:DTSID="{EAF1BF00-B3ED-4D8B-B0E1-1EB498BFAEC0}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="14G SundryPropertyTaxPaidOffRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>14G. SundryPropertyTaxPaidOffRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\15A DiscountingSource"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="15A. DiscountingSource.sql.dtsx"
+      DTS:DTSID="{F368731F-27E5-44B6-BEB7-B3A88C07B74F}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="15A DiscountingSource"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>15A. DiscountingSource.sql.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\15B DiscountingTarget"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="15B. DiscountingTarget.sql.dtsx"
+      DTS:DTSID="{9CC879FA-7545-4A7D-9F0D-BFE14375D0A8}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="15B DiscountingTarget"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>15B. DiscountingTarget.sql.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\15C DiscountingReconResult 15D DiscountingReconExtract"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="15C. DiscountingReconResult.dtsx"
+      DTS:DTSID="{EDBC9116-68EF-40E7-9042-2552AB942648}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="15C DiscountingReconResult 15D DiscountingReconExtract"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>15C. DiscountingReconResult.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\16 SyndicationRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="16. SyndicationRecon.sql.dtsx"
+      DTS:DTSID="{B7BE1E75-8042-489F-A780-8F3E66A7507C}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="16 SyndicationRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>16. SyndicationRecon.sql.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\17 SalesTaxReconForRentals"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="17 SalesTaxReconForRentals.dtsx"
+      DTS:DTSID="{7CFE4E21-9F8E-433F-BB96-4BF24BB8B597}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="17 SalesTaxReconForRentals"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>17. SalesTaxReconForRentals.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\18 ReceivableInvoiceRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="18. ReceivableInvoiceRecon.dtsx"
+      DTS:DTSID="{6068937D-8DA0-48F0-86E4-8319D3CD6E86}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="18 ReceivableInvoiceRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>18. ReceivableInvoiceRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\1A CustomerFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="1A. CustomerFieldWiseRecon.dtsx"
+      DTS:DTSID="{E0ECD080-D26E-4E85-8BF4-32C28F126E25}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="1A CustomerFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>1A. CustomerFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\1B CustomerAddressFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="1B. CustomerAddressFieldWiseRecon.dtsx"
+      DTS:DTSID="{D70E778B-14C4-4CA1-B457-172D2997F1A1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="1B CustomerAddressFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>1B. CustomerAddressFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\1C CustomerContactsFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="1C. CustomerContactsFieldWiseRecon.dtsx"
+      DTS:DTSID="{9FCC83C2-E395-4D05-9F10-851F2C20922F}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="1C CustomerContactsFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>1C. CustomerContactsFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\2A FunderFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="2A. FunderFieldWiseRecon.dtsx"
+      DTS:DTSID="{621D1CE2-6E0F-43E5-AFDB-FAF522BF6684}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="2A FunderFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>2A. FunderFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\2C FunderContactsFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="2C. FunderContactsFieldWiseRecon.dtsx"
+      DTS:DTSID="{F5863508-63B7-4246-842E-04E6478524BE}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="2C FunderContactsFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>2C. FunderContactsFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\3A VendorFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="3A. VendorFieldWiseRecon.dtsx"
+      DTS:DTSID="{6B08553F-7C6E-4C41-BB74-E45DF3EFE961}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="3A VendorFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>3A. VendorFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\3B VendorAddressesFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="3B. VendorAddressesFieldWiseRecon.dtsx"
+      DTS:DTSID="{F756D120-AD7A-4929-B4AD-E5A4CD1D6FA3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="3B VendorAddressesFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>3B. VendorAddressesFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\3C VendorContactsWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="3C. VendorContactsWiseRecon.dtsx"
+      DTS:DTSID="{FC79E966-81A6-431C-8DEC-E5AF55926B94}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="3C VendorContactsWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>3C. VendorContactsWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\4 LocationFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="4. LocationFieldWiseRecon.dtsx"
+      DTS:DTSID="{400B3C93-2354-403C-B669-6B744DFAC948}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="4 LocationFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>4. LocationFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\5 BillToFieldWiseRecon"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="5. BillToFieldWiseRecon.dtsx"
+      DTS:DTSID="{027D4516-FF3B-43E1-BCA1-3758FC95047D}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="5 BillToFieldWiseRecon"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>5. BillToFieldWiseRecon.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\MLARecon-Latest"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="MLARecon-Latest.dtsx"
+      DTS:DTSID="{9168D437-CEE9-429E-9513-F25E72C22639}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="MLARecon-Latest"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>MLARecon-Latest.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{4AA46AA1-885C-45D0-B10B-622922EE8944}"
+      DTS:From="Package\1A CustomerFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\1B CustomerAddressFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{808C55FA-89F6-4045-B36A-63507000A403}"
+      DTS:From="Package\1B CustomerAddressFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\1C CustomerContactsFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{AC2C345B-F4D0-4657-AAA4-7FC3B7FAD371}"
+      DTS:From="Package\10A EquipmentBreakdownRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\10B LeaseThirdPartyRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{3BAEA9D3-E981-4E8B-B9A6-EDA4760507D8}"
+      DTS:From="Package\10B LeaseThirdPartyRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\11 PropertyTaxRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{5F50C8AF-7E77-4979-A966-62143CA7B52B}"
+      DTS:From="Package\11 PropertyTaxRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\12 CreditProfileRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5973461-1E85-4189-B2E8-024D92076DFF}"
+      DTS:From="Package\12 CreditProfileRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 13"
+      DTS:To="Package\13 CommentRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
+      DTS:CreationName=""
+      DTS:DTSID="{08CE0CF6-411D-411F-BE84-859AC8D9A8AC}"
+      DTS:From="Package\13 CommentRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 14"
+      DTS:To="Package\14A SundryRecon_Active" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 15]"
+      DTS:CreationName=""
+      DTS:DTSID="{9ABBB305-5AE6-48DF-98B3-6102E4A21A9F}"
+      DTS:From="Package\14A SundryRecon_Active"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 15"
+      DTS:To="Package\14B SundryRecon_PaidOff" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 16]"
+      DTS:CreationName=""
+      DTS:DTSID="{63DF388B-9C49-47D6-B38E-F7132BE728D5}"
+      DTS:From="Package\14B SundryRecon_PaidOff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 16"
+      DTS:To="Package\14C SundryReconForContractBalances_CT" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
+      DTS:CreationName=""
+      DTS:DTSID="{07854847-4525-460D-A5C6-1CF4664C93B3}"
+      DTS:From="Package\14C SundryReconForContractBalances_CT"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 17"
+      DTS:To="Package\14D SundryReconForContractBalances_CU" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
+      DTS:CreationName=""
+      DTS:DTSID="{9EBC68F6-F0F7-4F1D-9F8F-3F71DCB7BD5B}"
+      DTS:From="Package\14D SundryReconForContractBalances_CU"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 18"
+      DTS:To="Package\14E SundrySalesTaxReconForContractBalances_CT" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{8261021B-E33A-499A-A3AC-4C40EA91CA79}"
+      DTS:From="Package\14E SundrySalesTaxReconForContractBalances_CT"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\14F SundrySalesTaxReconForContractBalances_CU" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{20A27FA7-FCDE-48DA-B5D5-3C81E9A24D71}"
+      DTS:From="Package\1C CustomerContactsFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\2A FunderFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{6276B7A9-AA35-4DAA-8CE9-2453C2FE2750}"
+      DTS:From="Package\14F SundrySalesTaxReconForContractBalances_CU"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\14G SundryPropertyTaxPaidOffRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{4C47B187-B698-41A4-B39D-164D1A16C8F7}"
+      DTS:From="Package\14G SundryPropertyTaxPaidOffRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\15A DiscountingSource" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{88725EA0-E6D8-4AE6-97EA-9E69E12D8C91}"
+      DTS:From="Package\15A DiscountingSource"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\15B DiscountingTarget" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{D5FC7A54-B71F-4465-8D71-A7F1017454AF}"
+      DTS:From="Package\15B DiscountingTarget"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 23"
+      DTS:To="Package\15C DiscountingReconResult 15D DiscountingReconExtract" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{5E656A3F-0CE6-4B4F-97F6-662449090984}"
+      DTS:From="Package\15C DiscountingReconResult 15D DiscountingReconExtract"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 24"
+      DTS:To="Package\16 SyndicationRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{2951F791-F357-4E3A-8F47-98AD68D1DE05}"
+      DTS:From="Package\16 SyndicationRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 25"
+      DTS:To="Package\17 SalesTaxReconForRentals" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{7CDAC5CD-FCE5-4E23-94C7-9F2EF14E87A3}"
+      DTS:From="Package\17 SalesTaxReconForRentals"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\18 ReceivableInvoiceRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{3C9CD439-C79E-42B0-8001-569E4DF2F8F9}"
+      DTS:From="Package\18 ReceivableInvoiceRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\MLARecon-Latest" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9DCD2683-0529-44C0-A71D-AF1C2297E4B9}"
+      DTS:From="Package\2A FunderFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\2C FunderContactsFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{D2EBCD5E-44FE-4866-8DE1-8B5820F2E071}"
+      DTS:From="Package\2C FunderContactsFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\3A VendorFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{8FD39FAF-367A-4C0C-8084-4847886A8CFB}"
+      DTS:From="Package\3A VendorFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\3B VendorAddressesFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B6EE50E1-2162-434D-8278-8D362ED1F319}"
+      DTS:From="Package\3B VendorAddressesFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\3C VendorContactsWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{57AB7C04-99DA-493D-A2C2-26D3E675C6A6}"
+      DTS:From="Package\3C VendorContactsWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\4 LocationFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{970B3E68-F24B-4566-842B-56E5D23270BD}"
+      DTS:From="Package\4 LocationFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\5 BillToFieldWiseRecon" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{E0F413E4-861B-4811-94C6-122B45A2FD7C}"
+      DTS:From="Package\5 BillToFieldWiseRecon"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\10A EquipmentBreakdownRecon" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\5 BillToFieldWiseRecon"
+          TopLeft="154,836" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\1A CustomerFieldWiseRecon"
+          TopLeft="60.1111111111111,118" />
+        <NodeLayout
+          Size="255,42"
+          Id="Package\1B CustomerAddressFieldWiseRecon"
+          TopLeft="41.6111111111111,189" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package\1C CustomerContactsFieldWiseRecon"
+          TopLeft="37.1111111111111,269" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\2A FunderFieldWiseRecon"
+          TopLeft="68.6111111111111,348" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\2C FunderContactsFieldWiseRecon"
+          TopLeft="48.6111111111111,431" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\3A VendorFieldWiseRecon"
+          TopLeft="66.1111111111111,517" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="169.111111111111,160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="169.111111111111,231">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="169.111111111111,311">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="169.111111111111,390">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="169.111111111111,473">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="249,42"
+          Id="Package\3B VendorAddressesFieldWiseRecon"
+          TopLeft="44.6111111111111,605" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="169.111111111111,559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="222,42"
+          Id="Package\3C VendorContactsWiseRecon"
+          TopLeft="58.1111111111111,685" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="169.111111111111,647">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="206,42"
+          Id="Package\4 LocationFieldWiseRecon"
+          TopLeft="66.1111111111111,769" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="169.111111111111,727">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="169.111111111111,811">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.5555555555555,25"
+              Start="0,0"
+              End="50.5555555555555,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.8766700924974" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.8766700924974"
+                    Point2="0,14.8766700924974"
+                    Point3="4,14.8766700924974" />
+                  <mssgle:LineSegment
+                    End="46.5555555555555,14.8766700924974" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.5555555555555,14.8766700924974"
+                    Point2="50.5555555555555,14.8766700924974"
+                    Point3="50.5555555555555,18.8766700924974" />
+                  <mssgle:LineSegment
+                    End="50.5555555555555,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="232,42"
+          Id="Package\10A EquipmentBreakdownRecon"
+          TopLeft="331,117" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="329.333333333333,836">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="80.3333333333333,-677"
+              Start="0,0"
+              End="80.3333333333333,-669.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-335.078683206944" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-335.078683206944"
+                    Point2="0,-339.078683206944"
+                    Point3="4,-339.078683206944" />
+                  <mssgle:LineSegment
+                    End="76.3333333333333,-339.078683206944" />
+                  <mssgle:CubicBezierSegment
+                    Point1="76.3333333333333,-339.078683206944"
+                    Point2="80.3333333333333,-339.078683206944"
+                    Point3="80.3333333333333,-343.078683206944" />
+                  <mssgle:LineSegment
+                    End="80.3333333333333,-669.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="205,42"
+          Id="Package\10B LeaseThirdPartyRecon"
+          TopLeft="449.5625,188" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="484.333333333333,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="67.7291666666667,29"
+              Start="0,0"
+              End="67.7291666666667,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.71917808219178" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.71917808219178"
+                    Point2="0,11.7191780821918"
+                    Point3="4,11.7191780821918" />
+                  <mssgle:LineSegment
+                    End="63.7291666666667,11.7191780821918" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.7291666666667,11.7191780821918"
+                    Point2="67.7291666666667,11.7191780821918"
+                    Point3="67.7291666666667,15.7191780821918" />
+                  <mssgle:LineSegment
+                    End="67.7291666666667,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\11 PropertyTaxRecon"
+          TopLeft="462.0625,262" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="552.0625,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="180,42"
+          Id="Package\12 CreditProfileRecon"
+          TopLeft="462.0625,341" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="552.0625,304">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="183,42"
+          Id="Package\13 CommentRecon"
+          TopLeft="460.5625,424" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 13]"
+          TopLeft="552.0625,383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="183,42"
+          Id="Package\14A SundryRecon_Active"
+          TopLeft="460.5625,504" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 14]"
+          TopLeft="552.0625,466">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="183,42"
+          Id="Package\14B SundryRecon_PaidOff"
+          TopLeft="460.5625,585" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 15]"
+          TopLeft="552.0625,546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="277,42"
+          Id="Package\14C SundryReconForContractBalances_CT"
+          TopLeft="413.5625,656" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 16]"
+          TopLeft="552.0625,627">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="280,42"
+          Id="Package\14D SundryReconForContractBalances_CU"
+          TopLeft="412.0625,744" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 17]"
+          TopLeft="552.0625,698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="318,42"
+          Id="Package\14E SundrySalesTaxReconForContractBalances_CT"
+          TopLeft="505,832" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 18]"
+          TopLeft="552.0625,786">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.2708333333334,46"
+              Start="0,0"
+              End="60.2708333333334,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4618272841051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.4618272841051"
+                    Point2="0,27.4618272841051"
+                    Point3="4,27.4618272841051" />
+                  <mssgle:LineSegment
+                    End="56.2708333333334,27.4618272841051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.2708333333334,27.4618272841051"
+                    Point2="60.2708333333334,27.4618272841051"
+                    Point3="60.2708333333334,31.4618272841051" />
+                  <mssgle:LineSegment
+                    End="60.2708333333334,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="342,42"
+          Id="Package\14F SundrySalesTaxReconForContractBalances_CU"
+          TopLeft="659,115" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="715.833333333333,832">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-675"
+              Start="0,0"
+              End="0,-667.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-667.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="261,42"
+          Id="Package\14G SundryPropertyTaxPaidOffRecon"
+          TopLeft="773.9375,190" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="885.666666666667,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.7708333333334,33"
+              Start="0,0"
+              End="18.7708333333334,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.29220023282888" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.29220023282888"
+                    Point2="0,13.2922002328289"
+                    Point3="4,13.2922002328289" />
+                  <mssgle:LineSegment
+                    End="14.7708333333334,13.2922002328289" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.7708333333334,13.2922002328289"
+                    Point2="18.7708333333334,13.2922002328289"
+                    Point3="18.7708333333334,17.2922002328289" />
+                  <mssgle:LineSegment
+                    End="18.7708333333334,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="187,42"
+          Id="Package\15A DiscountingSource"
+          TopLeft="810.9375,263" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="904.4375,232">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204,42"
+          Id="Package\15B DiscountingTarget"
+          TopLeft="802.4375,341" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="904.4375,305">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36"
+              Start="0,0"
+              End="0,28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="225,48"
+          Id="Package\15C DiscountingReconResult 15D DiscountingReconExtract"
+          TopLeft="791.9375,422" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 23]"
+          TopLeft="904.4375,383">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="183,42"
+          Id="Package\16 SyndicationRecon"
+          TopLeft="812.9375,501" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="904.4375,470">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="214,42"
+          Id="Package\17 SalesTaxReconForRentals"
+          TopLeft="797.4375,583" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 25]"
+          TopLeft="904.4375,543">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="209,42"
+          Id="Package\18 ReceivableInvoiceRecon"
+          TopLeft="799.9375,660" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="904.4375,625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160,42"
+          Id="Package\MLARecon-Latest"
+          TopLeft="824.4375,749" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="904.4375,702">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Recon.dtsx"
+          ParentId="Package"
+          Size="199,60"
+          Id="52078d40-6d3c-4c3b-b5ee-c7b5cb45ef45"
+          TopLeft="59,72">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="20.25"
+              Color="#FF000000"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
