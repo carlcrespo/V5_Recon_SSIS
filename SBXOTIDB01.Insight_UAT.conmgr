@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="SBXOTIDB01.Insight_UAT"
+  DTS:DTSID="{8E51AE57-26D7-4D14-B4AD-6467028E280E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=SBXOTIDB01;Initial Catalog=Insight_UAT;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-V5_Recon_SSIS-{8E51AE57-26D7-4D14-B4AD-6467028E280E}SBXOTIDB01.Insight_UAT;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
