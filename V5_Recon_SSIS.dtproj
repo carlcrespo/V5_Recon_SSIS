@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">IICL01842</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcsU8tSwAYkKB2MyEXLdaagAAAAACAAAAAAAQZgAAAAEAACAAAABre+cH3xQ3ZYIWv0nFUkLjFaoCRtf18kAbGbD1KLvQAAAAAAAOgAAAAAIAACAAAACoEueox0ozXa2zP3eHWCiTQzNdGjNr/fi+8HGpFEMycJAAAABHmjTavWTf8Lu1cneIrD5kyrQnI+E2kTMaDwulFGruTni6qdURgym731CGtYO4xw2GNm1s1Qin90LqytOQkMPHWw1h19T7B+55AyBdzs1b5AQGe8RVLOpG4YEBz6ugePErEklkY+fKevMN//AyEXuQ6lf1FVorVaAszISEvpb9ceJfQIZ1oTW+Tj3VXy9griFAAAAAnViH10O/XrFQ/l4veYuJKJOB7bfsoyUiXOwhdln4oFKpVsSRjiw1H8Ceyi6slGGKAxNZACH2EPXWv0kJ/HNWdA==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcsU8tSwAYkKB2MyEXLdaagAAAAACAAAAAAAQZgAAAAEAACAAAACPeBoWKRzFbWsuCN+zcOrUkfxAAsGTir0Ug9t3ENN0twAAAAAOgAAAAAIAACAAAAABI38Xn41PUgXV9qejtUmf0nqBXMwoB8xr7WEyLnBRdJAAAAByvFyI0YTXEUmnSzVe03vKfKMn4a8d0TuOK9H4ceasQ7ayVaiqXCkq0vgyB3HNgjOFfSCQSd5hqlSjRrvrDgoZxKzT3RxI1RshiSkWrim2EdevfaJM2FrfucvS12RFmwQDwx3dON1m+EB/JXxnbMZ2Z+fNMH0bHMNIcQwDFJqq8zSi7WEU8CR2dgu4zN0Tf3NAAAAAdKIH5P4+w/1NlFF7Lyc/DJSduSmm6XeTMm2gHMW0Y9EtQdk3G+PX8kQucTvRa+xajHLzGHzVsPkOkLjnZ3kBow==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -61,6 +61,7 @@
           <SSIS:Package SSIS:Name="17. SalesTaxReconForRentals.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="18. ReceivableInvoiceRecon.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Recon.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="ReconScript.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="srcOTI.conmgr" />
@@ -856,6 +857,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{500ED059-FD27-4F59-89C4-B465B67A827B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="ReconScript.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{EEB8C838-1B0F-4BFC-842F-97480915BA79}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">ReconScript</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2E6AC884-9DC3-48CE-AC47-D3AC9FC20B55}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
